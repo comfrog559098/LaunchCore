@@ -280,7 +280,10 @@ namespace LaunchCore
             {
                 WebRequest lWebRequest = base.GetWebRequest(uri);
                 lWebRequest.Timeout = Timeout;
-                ((HttpWebRequest)lWebRequest).ReadWriteTimeout = Timeout;
+
+                if (lWebRequest is HttpWebRequest httpWebRequest)
+                    httpWebRequest.ReadWriteTimeout = Timeout;
+
                 return lWebRequest;
             }
         }
@@ -413,6 +416,13 @@ namespace LaunchCore
             {
                 jsonData = JsonConvert.DeserializeObject<VersionJsonData>
                     (FetchJsonDataAsync(_clientVersionAPILink));
+
+                if (jsonData == null)
+                {
+                    MessageBox.Show($"Error checking for client version, client version URL was not correct!");
+                    return "N/A";
+                }
+
                 return jsonData.Version;
             }
             catch (Exception ex)
@@ -429,6 +439,13 @@ namespace LaunchCore
             {
                 jsonData = JsonConvert.DeserializeObject<VersionJsonData>
                     (FetchJsonDataAsync(_launcherVersionAPILink));
+
+                if (jsonData == null)
+                {
+                    MessageBox.Show($"Error checking for launcher version, launcher version URL was not correct!");
+                    return "N/A";
+                }
+
                 return jsonData.Version;
             }
             catch (Exception ex)
