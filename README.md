@@ -35,15 +35,7 @@ A clean, customizable Windows game launcher built in C# using WPF. Supports upda
 - LaunchCore -> MainWindow.xaml.cs -> MainWindow(), all the things to change are in capital letters.
 
 ## Things to note:
-- The userData.xml file is autocreated. ***It should never be pushed to the repo, nor should it be bundled into the newest launcher files to download***, otherwise you would overwrite everyone's userData.xml files. No bueno!
 - Version files are auto-downloaded from the server, as well as the content of the last blog post (title, image-content, excerpt, link, and date)
-
-`Game Version Link: https://client-api.realmdex.workers.dev/api/client/version`
-
-`Launcher Version Link: https://client-api.realmdex.workers.dev/api/launcher/version`
-
-`Blog Posts Link: https://valor-test.realmdex.com/launcher/getBlogPosts`
-
 - Version for the client is stored in Version.txt
 - Version for the launcher is stored in LauncherVersion.txt, and needs to be updated for every Launcher version.
 
@@ -56,7 +48,6 @@ A clean, customizable Windows game launcher built in C# using WPF. Supports upda
 - The launcher checks the server's Version.txt file to see what the version number is. If it doesn't exist, it sets the version number in the local Version.txt file to 0.0.0; if it does not exist, it just downloads the new Version.txt file and updates the client as it's a "fresh install"
 - If version number < server's version number, it downloads the new client as a zip, extracts it, and deletes the old client
 - It also auto-changes the button based on the state (enum) of the launcher.
-
 
 # How to perform/prepare an update to the launcher
 Note: All of these folders and files need to be EXACTLY named. I will make it auto do all this stuff in the future, auto download the exes, make the folders, etc. However this is easier for right now.
@@ -73,9 +64,7 @@ Note: All of these folders and files need to be EXACTLY named. I will make it au
 
 6. Make sure that the server's LauncherVersion.txt matches the server's LauncherVersion.txt, exact same or else it will ask the user to download the update **every time**.
 
-7. **Make sure that you delete your userData.xml file out of the Launcher folder that you are zipping, as it will overwrite people's saves if you keep it in.**
-
-8. Everything should be fine after this - zip it, call it `Valor_Launcher.zip` explicitly (updater will not work otherwise), upload the launcher and go! 
+7. Everything should be fine after this - zip it, call it `LaunchCore.zip` explicitly (updater will not work otherwise), upload the launcher and go! 
 
 ## 📄 License
 MIT
