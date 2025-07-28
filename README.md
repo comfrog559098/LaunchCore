@@ -3,7 +3,6 @@
 A clean, customizable Windows game launcher built in C# using WPF. Supports update detection, patch downloading, and dynamic patch notes.
 
 ## 🔧 Features
-- Remote version checking via `update.json`
 - Auto-download and apply game patches
 - Patch notes fetched and displayed in launcher (requires your own APIs)
 - Self-relaunch on update completion
@@ -18,15 +17,6 @@ A clean, customizable Windows game launcher built in C# using WPF. Supports upda
 ## 📸 Screenshots
 <img width="1274" height="662" alt="image" src="https://github.com/user-attachments/assets/34eab068-dfa8-4d8d-bb7f-859afd1e887e" />
 <img width="1275" height="632" alt="image" src="https://github.com/user-attachments/assets/84771936-96be-459b-a6ce-5241e3430f76" />
-
-## 🔗 Example `update.json`
-```json
-{
-  "version": "1.0.1",
-  "notes": "https://example.com/patchnotes.txt",
-  "url": "https://example.com/downloads/gamepatch.zip"
-}
-```
 
 ## 🧰 Getting Started
 - Clone the repository
