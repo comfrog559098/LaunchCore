@@ -1,0 +1,9 @@
+﻿<Application x:Class="LaunchCore.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LaunchCore"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <FontFamily x:Key="PressStart2P">pack://application:,,,/Fonts/#Press Start 2P</FontFamily>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Layout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Press Start 2P', system-ui;
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #732C2C;
+            color: #EAA980;
+        }
+        .dashboard {
+            display: flex;
+            height: 100%;
+        }
+        .image-container {
+            width: 100%;
+            padding-top: 20px;
+            margin-bottom: 0; /* Remove margin between image and title */
+            height: 40%;
+        }
+        .title {
+            font-size: 0.7em;
+            padding-top: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 20%;
+        }
+        a, a:visited, a:active {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            font-size: 12px;
+            height: 38%;
+            overflow-y: auto; /* Vertical scrollbar */
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+        }
+        .image {
+            height: auto;
+            width: 100%;
+            object-fit: cover;
+        }
+        h1 { /* title */
+            
+        }
+        p { /* content */
+            line-height: 1.6;
+            overflow-y: auto; /* Vertical scrollbar */
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+        }
+        /* Style the scrollbar track */
+        ::-webkit-scrollbar-track {
+            background: #571F1B;
+            border-radius: 5px;
+        }
+
+        /* Style the scrollbar thumb */
+        ::-webkit-scrollbar-thumb {
+            background: #2F0F08;
+            border-radius: 5px;
+        }
+
+        /* Style the scrollbar width and height */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #FF8356;
+        }
+        a {
+            color: inherit;
+            transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <div>
+            <div class="image-container">
+                <img class="image" src="{BLOG_IMAGE_1}" alt="Latest Blog Post Image">
+            </div>
+            <div class="title">
+                <h1><a href="{BLOG_TITLE_LINK_1}" target="_blank">{BLOG_TITLE_1}</a></h1>
+            </div>
+            <div class="content">
+                <p class="scrollable">{BLOG_CONTENT_1}... </br><a href="{BLOG_TITLE_LINK_1}" target="_blank">read whole post here!</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
