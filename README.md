@@ -89,4 +89,4 @@
 
 - Blog/patch notes are fetched dynamically from your API endpoint (not included)
 - Naming conventions are strict for now but planned to be configurable
-- This project is actively maintained and used in production environments
+- This project is NOT actively maintained currently, but is used in production environments
