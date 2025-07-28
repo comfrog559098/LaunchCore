@@ -52,8 +52,8 @@
 ## 🔄 How Launcher Auto-Updating Works
 
 1. Launcher compares `LauncherVersion.txt` with server's version
-2. If out of date, it launches `Launcher_Updater.exe`, closes itself, and replaces its files
-3. The updater then relaunches the new `Valor_Launcher.exe`
+2. If out of date, it launches `LaunchCoreUpdater.exe`, closes itself, and replaces its files
+3. The updater then relaunches the new `LaunchCore.exe`
 
 ---
 
