@@ -28,6 +28,7 @@
 
 <img width="1274" height="662" alt="Launcher UI" src="https://github.com/user-attachments/assets/34eab068-dfa8-4d8d-bb7f-859afd1e887e" />
 <img width="1275" height="632" alt="Patch Notes UI" src="https://github.com/user-attachments/assets/84771936-96be-459b-a6ce-5241e3430f76" />
+
 > ⚠️ Errors are only due to URLs being placeholder.
 
 ---
