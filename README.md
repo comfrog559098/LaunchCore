@@ -1,60 +1,92 @@
-# LaunchCore – A Windows-Only C# Game Launcher Template
+# LaunchCore – A Windows-Only Game Launcher Template
 
-A clean, customizable Windows game launcher built in C# using WPF. Supports update detection, patch downloading, and dynamic patch notes.
+**LaunchCore** is a production-ready, customizable game launcher for Windows built with C#. Designed to simplify game distribution and updating, it includes built-in version tracking, auto-updating (both launcher and client), and patch note delivery.
 
-## 🔧 Features
-- Auto-download and apply game patches
-- Patch notes fetched and displayed in launcher (requires your own APIs)
-- Self-relaunch on update completion
+---
 
-## 📦 Tech Stack
-- C# (.NET Framework 4.8.2 for launcher, .NET >= 8 for launcher's self-updater)
+## ✨ Features
+
+- Auto-download and apply client patches
+- Self-updating launcher using a bundled updater executable
+- Patch notes fetched and displayed via configurable blog endpoints
+- Dynamic launch button text/states based on patching state
+- Fully customizable and lightweight
+
+---
+
+## 🧰 Tech Stack
+
+- C# (.NET Framework 4.8.2 for launcher, .NET 8+ for updater)
 - WinForms
-- SharpZipLib (or System.IO.Compression)
+- SharpZipLib / System.IO.Compression
 - WebClient
-- CefSharp
+- CefSharp (embedded browser support)
+
+---
 
 ## 📸 Screenshots
-<img width="1274" height="662" alt="image" src="https://github.com/user-attachments/assets/34eab068-dfa8-4d8d-bb7f-859afd1e887e" />
-<img width="1275" height="632" alt="image" src="https://github.com/user-attachments/assets/84771936-96be-459b-a6ce-5241e3430f76" />
 
-## 🧰 Getting Started
-- Clone the repository
-- Change the links in:
-- LaunchCoreUpdater -> Program.cs -> launcherFilesLink
-- LaunchCore -> MainWindow.xaml.cs -> MainWindow(), all the things to change are in capital letters.
+<img width="1274" height="662" alt="Launcher UI" src="https://github.com/user-attachments/assets/34eab068-dfa8-4d8d-bb7f-859afd1e887e" />
+<img width="1275" height="632" alt="Patch Notes UI" src="https://github.com/user-attachments/assets/84771936-96be-459b-a6ce-5241e3430f76" />
 
-## Things to note:
-- Version files are auto-downloaded from the server, as well as the content of the last blog post (title, image-content, excerpt, link, and date)
-- Version for the client is stored in Version.txt
-- Version for the launcher is stored in LauncherVersion.txt, and needs to be updated for every Launcher version.
+---
 
-## How Auto-Updating the launcher works:
-- The launcher self-updates using the Launcher_Updater.exe file that is bundled into the launcher files. 
-- The launcher checks online for the version file for the launcher, if it exists and it is not the exact version number as is the one on the server, then we update the launcher by running Launcher_Updater.exe, and then closing the program. 
-- The Launcher_Updater.exe then does all the updating, and opens the updated Valor_Launcher.exe.
+## 🚀 Getting Started
 
-## How Auto-Updating the client works:
-- The launcher checks the server's Version.txt file to see what the version number is. If it doesn't exist, it sets the version number in the local Version.txt file to 0.0.0; if it does not exist, it just downloads the new Version.txt file and updates the client as it's a "fresh install"
-- If version number < server's version number, it downloads the new client as a zip, extracts it, and deletes the old client
-- It also auto-changes the button based on the state (enum) of the launcher.
+1. Clone the repository
+2. Modify the following:
+   - `LaunchCoreUpdater/Program.cs` → `launcherFilesLink`
+   - `LaunchCore/MainWindow.xaml.cs` → Replace placeholders in **ALL CAPS**
+3. Build and test
 
-# How to perform/prepare an update to the launcher
-Note: All of these folders and files need to be EXACTLY named. I will make it auto do all this stuff in the future, auto download the exes, make the folders, etc. However this is easier for right now.
+---
 
-1. Make sure to build for `Release`.
+## 📌 Versioning Logic
 
-2. Make sure there is a `Prerequisite` folder, and an `Updater` folder in Launcher folder.
+- `Version.txt` stores the current **game client** version
+- `LauncherVersion.txt` stores the current **launcher** version
+- These files are checked at runtime against server copies to determine if an update is needed
 
-3. Prerequisite folder should have `net8.0.1installer.exe`, however, the net8.0.1installer.exe file can be any net 8+ runtime installer executable. It just has to be that name. Will change in the future to just be `net8installer.exe`
+---
 
-4. Put all of the Updater files into the Updater folder in the Launcher folder.
+## 🔄 How Launcher Auto-Updating Works
 
-5. Make sure that there is no Version.txt file in the Launcher folder, as the game will not update if it has the most up-to-date client version in Version.txt. It is better to let the launcher download the version.txt from the server and then update the client the first time.
+1. Launcher compares `LauncherVersion.txt` with server's version
+2. If out of date, it launches `Launcher_Updater.exe`, closes itself, and replaces its files
+3. The updater then relaunches the new `Valor_Launcher.exe`
 
-6. Make sure that the server's LauncherVersion.txt matches the server's LauncherVersion.txt, exact same or else it will ask the user to download the update **every time**.
+---
 
-7. Everything should be fine after this - zip it, call it `LaunchCore.zip` explicitly (updater will not work otherwise), upload the launcher and go! 
+## 🔁 How Game Auto-Updating Works
 
-## 📄 License
-MIT
+1. Compares local `Version.txt` with server’s version
+2. If newer version found, downloads new client `.zip`, extracts it, deletes the old version
+3. Updates button state and version file automatically
+
+---
+
+## 🛠️ Preparing an Update Release
+
+1. Build in `Release` mode
+2. Create two folders in the launcher build directory:
+   - `Prerequisite/` → must contain `net8.0.1installer.exe`
+   - `Updater/` → contains all updater files
+3. Ensure `Version.txt` is **not** present in final build (it will be downloaded)
+4. Match `LauncherVersion.txt` exactly between local and server copies
+5. Zip all files and name the archive **`LaunchCore.zip`**
+
+> ⚠️ The updater expects that filename explicitly. This will be configurable in a future version.
+
+---
+
+## 📝 License
+
+[MIT](LICENSE)
+
+---
+
+## 📣 Notes
+
+- Blog/patch notes are fetched dynamically from your API endpoint (not included)
+- Naming conventions are strict for now but planned to be configurable
+- This project is actively maintained and used in production environments
